@@ -1,13 +1,64 @@
 import { Component } from '@angular/core';
+import { RouterOutlet, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  standalone: true,
+  imports: [RouterOutlet, RouterModule, CommonModule],
+  template: `
+    <div class="app-container">
+      <nav class="navbar">
+        <h1>My About Me App</h1>
+        <ul>
+          <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+          <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+          <li><a routerLink="/hobbies" routerLinkActive="active">Hobbies</a></li>
+        </ul>
+      </nav>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  `,
+  styles: [`
+    .app-container {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar h1 {
+      margin: 0;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+    .navbar a:hover, .navbar a.active {
+      background-color: #555;
+    }
+    main {
+      padding: 2rem;
+    }
+  `]
 })
 export class AppComponent {
-  name = 'Parul Kondekar';
-  bio = 'im learning angular because my code needed more plot twists and who needs sleep anyway:)';
-  profilePic = 'https://media.licdn.com/dms/image/v2/D5612AQGqPGHORIsa-g/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1691871730624?e=2147483647&v=beta&t=HT4mUN4oFnzQAJ7wz1X7pDqRp38vifBP8d9SkyG7hW4'; 
-  pic='https://www.shutterstock.com/image-vector/this-cat-pixel-art-cute-260nw-2183120025.jpg';
+  title = 'about-me-app';
 }
